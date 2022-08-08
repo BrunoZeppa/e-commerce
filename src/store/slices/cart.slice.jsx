@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import getConfig from '../../utils/GetConfig';
+import getConfig from '../../utils/getConfig.jsx';
 import { setIsLoading } from './isLoadingSlice';
 
 export const cartSlice = createSlice({
