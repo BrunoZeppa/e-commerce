@@ -1,0 +1,12 @@
+.h-custom {
+    color: #515151;
+}
+
+
+
+@media (min-width: 1025px) {
+    .h-custom {
+        height: 100vh !important;
+        color: #515151;
+    }
+}

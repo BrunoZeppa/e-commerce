@@ -1,0 +1,13 @@
+.banner-component {
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    overflow: scroll;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+}
+
+.banner-component img {
+    width: 100vw;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}

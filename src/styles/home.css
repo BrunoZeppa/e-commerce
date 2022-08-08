@@ -5,10 +5,10 @@
 }
 
 
+
 main{
     padding: 35px;
 }
-
 
 .product-card .image{
     height: 250px;
@@ -58,15 +58,15 @@ main{
 
  .product-card .cart-button {
     background: #f85555;
-    border-radius: 50%;
     bottom: 30px;
     color: #fff;
     font-size: 1.3rem;
-    height: 50px;
     line-height: 0;
     position: absolute;
     right: 30px;
     width: 50px;
+    height: 50px;
+    border-radius: 50%;
     border: none;
     cursor: pointer;
  }
@@ -77,4 +77,24 @@ main{
  }
  .categories{
     cursor: pointer;
+ }
+
+ @media screen and (min-width: 961px){
+    .product-card .product-title{
+        font-size: 12px;
+    }
+    .product-card .cart-button {
+        background: #f85555;
+        bottom: 10px;
+        color: #fff;
+        font-size: .9rem;
+        line-height: 0;
+        position: absolute;
+        right: 10px;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: none;
+        cursor: pointer;
+     }
  }
