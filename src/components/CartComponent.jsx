@@ -143,8 +143,8 @@ const CartComponent = ({cart}) => {
                           </div>
       
                           <div className="d-flex justify-content-between mb-4">
-                            <p className="mb-2">Total(Incl. taxes)</p>
-                            <p className="mb-2">{}</p>
+                            <p className="mb-2">Taxes</p>
+                            <p className="mb-2"> $ {total(cart) - Math.round((total(cart))/1.16)}</p>
                           </div>
       
                           <button type="button" className="btn btn-info btn-block btn-lg" style={{background: "#f85555"}}>
