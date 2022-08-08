@@ -134,12 +134,12 @@ const CartComponent = ({cart}) => {
       
                           <div className="d-flex justify-content-between">
                             <p className="mb-2">Subtotal</p>
-                            <p className="mb-2">$4798.00</p>
+                            <p className="mb-2"> $ {Math.round((total(cart))/1.16)}.00</p>
                           </div>
       
                           <div className="d-flex justify-content-between">
                             <p className="mb-2">Shipping</p>
-                            <p className="mb-2">$20.00</p>
+                            <p className="mb-2">$0.00</p>
                           </div>
       
                           <div className="d-flex justify-content-between mb-4">
