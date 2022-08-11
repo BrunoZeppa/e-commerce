@@ -41,25 +41,18 @@ export const removeProductThunk = id => dispatch => {
     .finally(()=> dispatch(setIsLoading(false)));
 }
 
-/*
-export const addQuantityThunk = (quantity, id) => dispatch => {
-    dispatch(setIsLoading(true));
-    return axios.patch("https://ecommerce-api-react.herokuapp.com/api/v1/cart/", { id: id, newQuantity: quantity + 1 }, getConfig())
+
+export const increaseQuantityThunk = (quantity, id) => dispatch => {
+    return axios
+        .patch("https://ecommerce-api-react.herokuapp.com/api/v1/cart", { id: id, newQuantity: quantity + 1 }, getConfig())
         .then(() => dispatch(getCartThunk()))
-        .finally(() => dispatch(setIsLoading(false)));
 }
 
-export const removeQuantityThunk = (quantity, id ) => dispatch =>{
-    dispatch(setIsLoading(true));
-    return axios.patch("https://ecommerce-api-react.herokuapp.com/api/v1/cart/", {id: id, newQuantity: quantity -1}, getConfig())
+export const decreaseQuantityThunk = (quantity, id ) => dispatch =>{
+    return axios
+    .patch("https://ecommerce-api-react.herokuapp.com/api/v1/cart", {id: id, newQuantity: quantity -1}, getConfig())
     .then(() => dispatch( getCartThunk()))
-    .finally(()=> dispatch(setIsLoading(false))); 
 }
-
-*/
-
-
-
 
 export const { setCart } = cartSlice.actions;
 

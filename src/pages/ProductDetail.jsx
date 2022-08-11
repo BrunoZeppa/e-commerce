@@ -6,6 +6,7 @@ import { getProductsThunk } from '../store/slices/home.slice';
 import ImagesGallery from '../components/ImagesGallery';
 import { Button, Card, Col, Row } from 'react-bootstrap';
 import { addToCartThunk } from '../store/slices/cart.slice';
+import Swal from 'sweetalert2';
 
 const ProductDetail = () => {
 
@@ -36,8 +37,19 @@ const ProductDetail = () => {
     const addToCart = (e) => {
         e.preventDefault();
         dispatch(addToCartThunk(productDetail.id, quantity));
-        navigate('/cart');
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Product added to your cart',
+            showConfirmButton: false,
+            timer: 1500
+          })
     }
+
+    const goToProductsDetail = (url) => {
+        navigate(url)
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
 
 
 
@@ -96,7 +108,7 @@ const ProductDetail = () => {
                 {
                     suggestedProducts.map(products => (
                         <Col key={products.id}>
-                            <Card onClick={() => navigate(`../product/${products.id}`)} className="product-card">
+                            <Card onClick={() => goToProductsDetail(`../product/${products.id}`)} className="product-card">
                                 <div className='image'>
                                     <Card.Img variant="top" src={products.productImgs[0]} />
                                     <Card.Img variant="top" src={products.productImgs[1]} className="over" />

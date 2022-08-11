@@ -1,6 +1,6 @@
-import React from 'react';
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { removeProductThunk } from '../store/slices/cart.slice';
+import { decreaseQuantityThunk, increaseQuantityThunk, removeProductThunk } from '../store/slices/cart.slice';
 
 const CartComponent = ({cart}) => {
 
@@ -21,9 +21,13 @@ const CartComponent = ({cart}) => {
     dispatch(removeProductThunk(id))
   }
 
+  useEffect(() =>{
+    console.log("aqui no me recargo")
+
+  },[])
 
 
-
+console.log("me estoy recargando")
 
     return (
         <section className="h-100 h-custom">
@@ -64,11 +68,15 @@ const CartComponent = ({cart}) => {
                               </div>
                             </div>
                             <div className="d-flex flex-row align-items-center">
-                              <div style={{width: "50px"}}>
+
+                              <div style={{width: "50px", display: "flex", flexDirection: "row", gap: "6px"}}>
+                              <button onClick={() => dispatch(decreaseQuantityThunk(product.productsInCart.quantity, product.id))} disabled={product.productsInCart.quantity == 1} style={{border: "none", background: "#ffff"}}><i className="fa-solid fa-angle-left"></i></button>
                                 <h5 className="fw-normal mb-0">{product.productsInCart.quantity}</h5>
+                                <button onClick={() => dispatch(increaseQuantityThunk(product.productsInCart.quantity, product.id))} style={{border: "none", background: "#ffff"}}><i className="fa-solid fa-angle-right"></i></button>
                               </div>
+
                               <div style={{width: "80px"}}>
-                                <h5 className="mb-0">{product.productsInCart.quantity * parseInt(product.price)}</h5>
+                                <h5 className="mb-0">$ {product.productsInCart.quantity * parseInt(product.price)}</h5>
                               </div>
                               <button onClick={() => removeProduct(product.id)} style={{color: "#cecece", border: "none", background: "white"}}><i className="fas fa-trash-alt"></i></button>
                             </div>
@@ -149,7 +157,7 @@ const CartComponent = ({cart}) => {
       
                           <button type="button" className="btn btn-info btn-block btn-lg" style={{background: "#f85555"}}>
                             <div className="d-flex justify-content-between">
-                              <span>$ {total(cart)} Checkout</span>
+                              <span>$ {total(cart)} Pay</span>
                               <span> <i className="fas fa-long-arrow-alt-right ms-2"></i></span>
                             </div>
                           </button>

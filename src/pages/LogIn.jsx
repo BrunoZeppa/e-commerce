@@ -1,14 +1,41 @@
 import '../styles/logIn.css'
 import logo from '../logo-icon.svg'
+import { useForm } from 'react-hook-form';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const LogIn = () => {
+
+    const { handleSubmit, register, reset } = useForm();
+    const navigate = useNavigate();
+
+    const submit = data => {
+        axios.post('https://ecommerce-api-react.herokuapp.com/api/v1/users/login', data)
+            .then(res => {
+                navigate('/')
+                localStorage.setItem("token", res.data.data.token)
+                localStorage.setItem("firstName", res.data.data.user.firstName)
+            }
+            )
+            .catch(error => {
+                if(error.response.status == 404){
+                    alert("invalid credencials")
+                }
+                console.log(error)
+            });
+        reset({
+            email: "",
+            password: "",
+        });
+    }
+
 
 
 
     return (
         <section className="h-100 gradient-form">
             <div className="container py-5 h-100" >
-                <div className="row d-flex justify-content-center align-items-center h-100" style={{marginTop: "60px"}}>
+                <div className="row d-flex justify-content-center align-items-center h-100" style={{ marginTop: "60px" }}>
                     <div className="col-xl-10">
                         <div className="card rounded-3 text-black">
                             <div className="row g-0">
@@ -17,26 +44,26 @@ const LogIn = () => {
 
                                         <div className="text-center">
                                             <img src={logo}
-                                                style={{width: "185px"}} alt="logo" />
+                                                style={{ width: "185px" }} alt="logo" />
                                             <h4 className="mt-1 mb-5 pb-1">We are The E-Commerce Team</h4>
                                         </div>
 
-                                        <form>
+                                        <form onSubmit={handleSubmit(submit)}>
                                             <p>Please login to your account</p>
 
                                             <div className="form-outline mb-4">
                                                 <input type="email" id="form2Example11" className="form-control"
-                                                    placeholder="Phone number or email address" />
-                                                <label className="form-label" htmlFor="form2Example11">Username</label>
+                                                    placeholder="Phone number or email address" {...register("email")} />
+                                                <label className="form-label" htmlFor="form2Example11">Email</label>
                                             </div>
 
                                             <div className="form-outline mb-4">
-                                                <input type="password" id="form2Example22" className="form-control" />
+                                                <input type="password" id="form2Example22" className="form-control" {...register("password")} />
                                                 <label className="form-label" htmlFor="form2Example22">Password</label>
                                             </div>
 
                                             <div className="text-center pt-1 mb-5 pb-1">
-                                                <button className="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="button">Log
+                                                <button className="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit">Log
                                                     in</button>
                                                 <a className="text-muted" href="#!">Forgot password?</a>
                                             </div>

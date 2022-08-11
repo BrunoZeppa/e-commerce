@@ -1,13 +1,22 @@
-.banner-component {
+.slideshow {
     width: 100vw;
+    overflow: hidden;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+}
+
+.slideshowSlider{
+    width: 100%;
     display: flex;
     flex-direction: row;
     overflow: scroll;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-
+    white-space: nowrap;
+    transition: ease 1000ms;
 }
 
-.banner-component img {
-    width: 100vw;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+.slide{
+    display: inline-block;
+    object-fit: contain;
+    width: 100%;
 }
+
