@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Banner2 from '../components/Banner2';
 import useMediaQuery from '../hookes/useMediaQuery';
-import { filterCategoryThunk, filterTitleThunk, getProductsThunk } from '../store/slices/home.slice';
+import { filterCategoryThunk, filterTitleThunk, getProductsThunk, setProducts } from '../store/slices/home.slice';
 import '../styles/home.css'
 
 
@@ -40,6 +40,9 @@ const Home = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
+    const filterProducts = (e) => {
+        dispatch(filterCategoryThunk(e.target.value))
+    }
 
 
 
@@ -60,12 +63,13 @@ const Home = () => {
                 </Button>
                 <div className='categories-mobile'>
                 <i className="fa-solid fa-store"></i>
-                <select name="" id="" style={{height: "20px", width: "25px", border: "none", background: "#f8f9fa"}}>
-                
-                    <option value=""></option>
+
+                <select onChange={filterProducts} style={{height: "20px", width: "34px", border: "none", background: "#f8f9fa"}}>
+                <option>-</option>
+                    <option style={{fontSize: "4px"}}>all</option>
                     {
                         categories.map(category => (
-                            <option key={category.id} onClick={() => dispatch(filterCategoryThunk(category.id))} className="categories">{category.name}</option>
+                            <option key={category.id} value={category.id} className="categories">{category.name}</option>
                         ))
                     }
                 </select>
@@ -75,7 +79,7 @@ const Home = () => {
             <main>
                 <Row>
                     <Col lg={2}>
-                        <ListGroup className='categories-tablet-desktop' style={{display: matches? "none" : ""}}>
+                        <ListGroup className='categories-tablet-desktop'>
                             <ListGroup.Item onClick={() => dispatch(getProductsThunk())} style={{ cursor: "pointer" }}> Show all</ListGroup.Item>
                             {
                                 categories.map(category => (
