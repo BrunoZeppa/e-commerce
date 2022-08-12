@@ -6,11 +6,15 @@
 
 
 
-main{
+main {
     padding: 35px;
 }
 
-.product-card .image{
+.mb-3 {
+    margin-top: 60px;
+}
+
+.product-card .image {
     height: 250px;
     display: flex;
     justify-content: center;
@@ -20,18 +24,18 @@ main{
     cursor: pointer;
 }
 
-.product-card .image .over{
+.product-card .image .over {
     opacity: 0;
     position: absolute;
     transition: .8s;
     background: #fff;
 }
 
-.product-card .image:hover .over{
+.product-card .image:hover .over {
     opacity: 1;
 }
 
-.product-card .image img{
+.product-card .image img {
     height: 80%;
     width: 80%;
     object-fit: contain;
@@ -39,24 +43,24 @@ main{
     display: block;
 }
 
-.product-card .info{
+.product-card .info {
     padding: 20px 20px 30px;
-    border-top: .2px solid #515151 ;
+    border-top: .2px solid #515151;
     height: 150px;
 }
 
-.product-card .info .price{
-   color: #c7c7c7; 
+.product-card .info .price {
+    color: #c7c7c7;
 }
 
-.product-card .info .amount{
-    color: #515151; 
+.product-card .info .amount {
+    color: #515151;
     font-size: 1.2rem;
     font-weight: 600;
     margin-left: 10px;
- }
+}
 
- .product-card .cart-button {
+.product-card .cart-button {
     background: #f85555;
     bottom: 30px;
     color: #fff;
@@ -69,20 +73,55 @@ main{
     border-radius: 50%;
     border: none;
     cursor: pointer;
- }
- .product-card .cart-button:hover {
+}
+
+.product-card .cart-button:hover {
     background: #fc2929;
     color: #fff;
     cursor: pointer;
- }
- .categories{
-    cursor: pointer;
- }
+}
 
- @media screen and (min-width: 961px){
-    .product-card .product-title{
+.categories {
+    cursor: pointer;
+}
+
+.categories-mobile {
+    height: 25px;
+    width: 30px;
+    align-self: center;
+    justify-self: center;
+    position: absolute;
+    margin-top: 20px;
+    margin-left: 83% !important;
+    border: none;
+    background: #f8f9fa;
+    display: flex;
+    flex-direction: row;
+}
+
+.categories-tablet-desktop {
+    display: none !important;
+}
+
+@media screen and (min-width: 768px) {
+    .mb-3 {
+        margin-top: 30px;
+    }
+
+    .categories-mobile {
+        display: none;
+    }
+    .categories-tablet-desktop{
+        display: flex !important;
+    }
+
+}
+
+@media screen and (min-width: 961px) {
+    .product-card .product-title {
         font-size: 12px;
     }
+
     .product-card .cart-button {
         background: #f85555;
         bottom: 10px;
@@ -96,5 +135,9 @@ main{
         border-radius: 50%;
         border: none;
         cursor: pointer;
-     }
- }
+    }
+
+    .mb-3 {
+        margin-top: 0px;
+    }
+}

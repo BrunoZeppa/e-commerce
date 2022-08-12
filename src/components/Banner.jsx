@@ -37,10 +37,12 @@ const Banner = () => {
 
     return (
         <div className='slideshow'>
+            {/*
             <div className="slideshowSlider" >
                 <img className="slide" src={image1} alt="" />
                 <img className="slide" src={image2} alt="" />
             </div>
+    */}
         </div>
     );
 };

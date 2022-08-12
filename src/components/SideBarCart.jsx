@@ -23,12 +23,28 @@ const SideBarCart = ({ show, handleClose, }) => {
         dispatch(removeProductThunk(id))
     }
 
+    const disableCheckoutButton = (car) =>{
+        if(car.length == 0){
+            return "#808080"
+        }else{
+           return "#f85555"
+        }
+    }
+
+    const total = (car) =>{
+        let results = 0
+        for (let i = 0; i < car.length; i++) {
+          results += (car[i].productsInCart.quantity * parseInt(car[i].price))  
+        }
+        return results
+      }
+
     return (
         <Offcanvas show={show} onHide={handleClose} placement={'end'}>
             <Offcanvas.Header closeButton>
-                <Offcanvas.Title>Products in your cart</Offcanvas.Title>
+                <Offcanvas.Title><p className="mb-0">You have {cart.length} items in your cart</p></Offcanvas.Title>
             </Offcanvas.Header>
-            <Offcanvas.Body>
+            <Offcanvas.Body style={{display: "flex", flexDirection: "column" }}>
                 {
                     cart.map(product => (
                         <div className="card mb-3" key={product.id} onClick={() => navigate(`/product/${product.id}`)} style={{cursor: "pointer"}}>
@@ -59,7 +75,9 @@ const SideBarCart = ({ show, handleClose, }) => {
                         </div>
                     ))
                 }
-                <button onClick={checkout} style={{background: "#f85555", width: "100px", height: "40px", border: "none", color: "#ffff"}}>Checkout</button>
+                <p> Total:<span>$ {total(cart)}.00</span></p>
+                <hr />
+                <button onClick={checkout} style={{background: disableCheckoutButton(cart), width: "100px", height: "40px", border: "none", color: "#ffff"}} disabled={cart.length == 0}>Checkout</button>
             </Offcanvas.Body>
         </Offcanvas>
     );

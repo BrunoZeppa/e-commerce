@@ -3,13 +3,16 @@ import React, { useEffect, useState } from 'react';
 import { Button, Card, Col, Form, InputGroup, ListGroup, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import Banner from '../components/Banner';
+import Banner2 from '../components/Banner2';
+import useMediaQuery from '../hookes/useMediaQuery';
 import { filterCategoryThunk, filterTitleThunk, getProductsThunk } from '../store/slices/home.slice';
 import '../styles/home.css'
 
 
 
 const Home = () => {
+
+    const { matches } = useMediaQuery("(max-width: 599px)")
 
     const dispatch = useDispatch();
 
@@ -20,7 +23,6 @@ const Home = () => {
     const [searchValue, setSearchValue] = useState('');
 
     const [categories, setCategories] = useState([]);
-
 
     const capitalizeFirstLetter = (string) => {
         return string?.charAt(0).toUpperCase() + string?.slice(1);
@@ -40,6 +42,7 @@ const Home = () => {
 
 
 
+
     return (
         <>
             <InputGroup className="mb-3">
@@ -55,12 +58,24 @@ const Home = () => {
                     style={{ marginRight: "20%", marginTop: "7%", marginBottom: "2%" }}>
                     search
                 </Button>
+                <div className='categories-mobile'>
+                <i className="fa-solid fa-store"></i>
+                <select name="" id="" style={{height: "20px", width: "25px", border: "none", background: "#f8f9fa"}}>
+                
+                    <option value=""></option>
+                    {
+                        categories.map(category => (
+                            <option key={category.id} onClick={() => dispatch(filterCategoryThunk(category.id))} className="categories">{category.name}</option>
+                        ))
+                    }
+                </select>
+                </div>
             </InputGroup>
-            <Banner />
+            <Banner2/>
             <main>
                 <Row>
                     <Col lg={2}>
-                        <ListGroup>
+                        <ListGroup className='categories-tablet-desktop' style={{display: matches? "none" : ""}}>
                             <ListGroup.Item onClick={() => dispatch(getProductsThunk())} style={{ cursor: "pointer" }}> Show all</ListGroup.Item>
                             {
                                 categories.map(category => (
@@ -83,7 +98,7 @@ const Home = () => {
                                             </div>
                                             <Card.Body className='info'>
                                                 <Card.Title className='product-title'>{product.title}</Card.Title>
-                                                <Card.Text><span className='price'>Price</span><span className='amount'>${product.price}</span></Card.Text>
+                                                <Card.Text><span className='price'>Price</span><small style={{textDecoration: "line-through"}}>${Math.round((product.price) * 1.16)}</small><span className='amount'>${product.price}</span></Card.Text>
                                                 <Button className='cart-button'><i className="fa-solid fa-cart-shopping"></i></Button>
                                             </Card.Body>
                                         </Card>

@@ -1,11 +1,15 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import '../styles/footer.css'
 
 const Footer = () => {
+
+    const navigate = useNavigate();
 
 
 
     return (
-        <div className='footer' style={{background: "#141414", color: "white", display: "flex", flexDirection: "row", padding: "40px", justifyItems: "center", gap: "100px", fontSize: "12px"}}>
+        <div className='footer'>
             <div>
                 <h6>About us</h6>
                 <p>Privacy of service</p>

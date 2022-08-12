@@ -78,11 +78,15 @@ const LogIn = () => {
                                     </div>
                                 </div>
                                 <div className="col-lg-6 d-flex align-items-center gradient-custom-2">
-                                    <div className="text-white px-3 py-4 p-md-5 mx-md-4">
+                                    <div className="text-white px-3 py-4 p-md-5 mx-md-4" style={{textAlign: "center"}}>
                                         <h4 className="mb-4">We are more than just a company</h4>
-                                        <p className="small mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                        <p className="small mb-0">To enter, copy/paste the user into the blank fields<br /> <br />
+                                        Email: <br />
+                                            zegb94@gmail.com <br /><br />
+                                            password: <br />
+                                            Bruno12345
+                                            </p>
+
                                     </div>
                                 </div>
                             </div>

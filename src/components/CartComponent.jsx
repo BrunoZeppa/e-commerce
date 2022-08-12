@@ -1,11 +1,15 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { decreaseQuantityThunk, increaseQuantityThunk, removeProductThunk } from '../store/slices/cart.slice';
+import { postPurchasesThunk } from '../store/slices/userPurchases.slice';
+import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 const CartComponent = ({cart}) => {
 
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
+  
 
 
   const total = (car) =>{
@@ -26,6 +30,17 @@ const CartComponent = ({cart}) => {
 
   },[])
 
+  const succesPurchase = () => {
+    dispatch(postPurchasesThunk())
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Thank you for your purchase',
+      showConfirmButton: false,
+      timer: 1500
+    })
+    navigate('/purchases')
+  }
 
 console.log("me estoy recargando")
 
@@ -157,7 +172,7 @@ console.log("me estoy recargando")
       
                           <button type="button" className="btn btn-info btn-block btn-lg" style={{background: "#f85555"}}>
                             <div className="d-flex justify-content-between">
-                              <span>$ {total(cart)} Pay</span>
+                              <span onClick={succesPurchase}>$ {total(cart)} Pay</span>
                               <span> <i className="fas fa-long-arrow-alt-right ms-2"></i></span>
                             </div>
                           </button>

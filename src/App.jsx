@@ -26,8 +26,8 @@ console.log(isLoading)
           <Route path='/product/:id' element={<ProductDetail />} />
           <Route path='/cart' element={<Cart />} />
         </Routes>
+        <Footer />
       </HashRouter>
-      <Footer />
     </div>
   )
 }
