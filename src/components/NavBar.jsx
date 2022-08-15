@@ -26,6 +26,11 @@ const NavBar = () => {
       setShow(true);
     } else{
       navigate('/login')
+      Swal.fire({
+        icon: 'info',
+        title: 'Oops...',
+        text: 'you need to login first to see your cart',
+      })
     }
   } 
 
@@ -61,26 +66,7 @@ const NavBar = () => {
   }, []);
 
   document.body.style.backgroundColor = "#f8f9fa";
-  /*<Navbar collapseOnSelect expand="lg" bg="light" variant="light" style={{position: "fixed", top: "0", width: "100%", zIndex: "9"}}>
-        <Container>
-          <Navbar.Brand href="/#/"><img src={logo} alt="" style={{ width: "110px", height: "110px", position: "absolute", marginTop: "-50px", cursor: "pointer" }} /></Navbar.Brand>
-          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-          <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className="me-auto" style={{ marginLeft: "10%" }}>
-              <Nav.Link onClick={navToProducts}>Products</Nav.Link>
-              <Nav.Link onClick={navToPurchases}>Purchaes</Nav.Link>
-              {
-                token ? (
-                  <Nav.Link  onClick={logOut} style={{marginLeft: "200%", display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", gap: "10px"}} >{userName} <i className="fa-solid fa-right-from-bracket"></i></Nav.Link>
-                ) : (
-                  <Nav.Link onClick={navToLogin} style={{ marginLeft: "200%" }}>Login</Nav.Link>
-                )
-              }
-              <Nav.Link onClick={handleShow}><i className="fa-solid fa-cart-shopping"></i><button style={{ width: "10px", height: "10px", borderRadius: "50%", position: "absolute", border: "none", background: "red", fontSize: "7px", color: "white" }}>{cart?.length}</button></Nav.Link>
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar> */
+
 
   return (
     <>
@@ -91,7 +77,7 @@ const NavBar = () => {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="/#/">Products</Nav.Link>
-            <Nav.Link href="/#/purchases">Pusrchases</Nav.Link>
+            <Nav.Link href="/#/purchases">Purchases</Nav.Link>
             {
                 token ? (
                   <Nav.Link onClick={logOut}>{userName} <i className="fa-solid fa-right-from-bracket"></i></Nav.Link>

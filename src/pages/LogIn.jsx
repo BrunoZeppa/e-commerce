@@ -3,6 +3,7 @@ import logo from '../logo-icon.svg'
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const LogIn = () => {
 
@@ -15,11 +16,21 @@ const LogIn = () => {
                 navigate('/')
                 localStorage.setItem("token", res.data.data.token)
                 localStorage.setItem("firstName", res.data.data.user.firstName)
-            }
-            )
-            .catch(error => {
-                if(error.response.status == 404){
-                    alert("invalid credencials")
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: `welcome ${localStorage.getItem("firstName")}`,
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
+            })
+            ?.catch(error => {
+                if(error.response?.status == 404){
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Invalid credentials',
+                        text: 'Password or username is wrong',
+                      })
                 }
                 console.log(error)
             });
@@ -70,7 +81,7 @@ const LogIn = () => {
 
                                             <div className="d-flex align-items-center justify-content-center pb-4">
                                                 <p className="mb-0 me-2">Don't have an account?</p>
-                                                <button type="button" className="btn btn-outline-danger">Create new</button>
+                                                <button type="button" className="btn btn-outline-danger" onClick={() => navigate('/register')}>Create new</button>
                                             </div>
 
                                         </form>
@@ -79,14 +90,15 @@ const LogIn = () => {
                                 </div>
                                 <div className="col-lg-6 d-flex align-items-center gradient-custom-2">
                                     <div className="text-white px-3 py-4 p-md-5 mx-md-4" style={{textAlign: "center"}}>
-                                        <h4 className="mb-4">We are more than just a company</h4>
-                                        <p className="small mb-0">To enter, copy/paste the user into the blank fields<br /> <br />
-                                        Email: <br />
+                                        <h4 className="mb-4">"To enter, copy/paste the DEMO user into the blank fields" <br /><br /> 
+                                        <span style={{fontSize: "12px"}}>Email:</span><br />
                                             zegb94@gmail.com <br /><br />
-                                            password: <br />
+                                            <span style={{fontSize: "12px"}}>Password:</span> <br />
                                             Bruno12345
-                                            </p>
 
+                                        </h4>
+                                        <p className="small mb-0" style={{color: "red"}}>Or create a new user</p>
+                    
                                     </div>
                                 </div>
                             </div>

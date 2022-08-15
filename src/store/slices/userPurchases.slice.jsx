@@ -30,6 +30,15 @@ export const postPurchasesThunk = () => (dispatch) => {
       .finally(() => dispatch(setIsLoading(false)));
 }
 
+export const signUpThunk = data => {
+    return dispatch => {
+        dispatch(setIsLoading(true));
+        return axios.post('https://ecommerce-api-react.herokuapp.com/api/v1/users', data)
+        .catch(error => error.response)
+            .finally(() => dispatch(setIsLoading(false)));
+    }
+}
+
 export const { setUserPurchases } = userPurchasesSlice.actions;
 
 export default userPurchasesSlice.reducer;

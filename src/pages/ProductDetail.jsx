@@ -16,6 +16,7 @@ const ProductDetail = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [quantity, setQuantity] = useState(1)
+    const token = localStorage.getItem("token")
 
 
     const { id } = useParams();
@@ -36,6 +37,7 @@ const ProductDetail = () => {
 
     const addToCart = (e) => {
         e.preventDefault();
+        if(token){
         dispatch(addToCartThunk(productDetail.id, quantity));
         Swal.fire({
             position: 'top-end',
@@ -44,6 +46,14 @@ const ProductDetail = () => {
             showConfirmButton: false,
             timer: 1500
           })
+        }else{
+            navigate('/login')
+            Swal.fire({
+                icon: 'info',
+                title: 'Oops...',
+                text: 'you need to login first',
+              })
+        }
     }
 
     const goToProductsDetail = (url) => {

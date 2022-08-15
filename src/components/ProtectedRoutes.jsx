@@ -1,4 +1,6 @@
 import { Navigate, Outlet } from 'react-router-dom';
+import Swal from 'sweetalert2';
+
 
 const ProtectedRoutes = () => {
 
@@ -9,7 +11,13 @@ const ProtectedRoutes = () => {
     if(token){
         return <Outlet />
     } else { 
+        Swal.fire({
+            icon: 'info',
+            title: 'Oops...',
+            text: 'you need to login first to see your purchases',
+          })
         return <Navigate to='/login' />
+        
     }                     // Aquí le debemos decir la ruta a la que queremos llevar
 };                        // al usuario si no está autenticado
 

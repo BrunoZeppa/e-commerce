@@ -99,6 +99,10 @@ main {
     flex-direction: row;
 }
 
+.price-filter{
+    display: none;
+}
+
 .categories-tablet-desktop {
     display: none !important;
 }
@@ -139,5 +143,8 @@ main {
 
     .mb-3 {
         margin-top: 0px;
+    }
+    .price-filter{
+        display: block;
     }
 }
